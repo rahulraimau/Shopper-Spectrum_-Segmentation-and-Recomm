@@ -89,14 +89,34 @@ if module.startswith("1️"):
             st.error(f"⚠️ Error: {e}")
 # --- Customer Segmentation ---
 elif module.startswith("2️"):
-    st.title("👥 Customer Segmentation")
-    customer_id = st.number_input("🔑 Enter Customer ID", min_value=1, step=1)
+   import streamlit as st
+import numpy as np
+import joblib
 
-    if st.button("📊 Segment Customer"):
-        customer_data = rfm_df[rfm_df["CustomerID"] == customer_id]
+# Load trained clustering model
+kmeans_model = joblib.load("kmeans_model.joblib")
 
-        if customer_data.empty:
-            st.error("❌ Customer ID not found.")
-        else:
-            segment = kmeans.predict(customer_data[["Recency", "Frequency", "Monetary"]])
-            st.success(f"🎯 Customer belongs to Segment {segment[0]}")
+# Define segment mapping based on cluster number (update based on your model's cluster labels)
+segment_labels = {
+    0: "High-Value",
+    1: "Regular",
+    2: "Occasional",
+    3: "At-Risk"
+}
+
+st.set_page_config(page_title="Customer Segmentation", page_icon="👥")
+st.title("🎯 2️⃣ Customer Segmentation Module")
+st.markdown("🔍 Predict the customer segment using RFM inputs")
+
+# --- Input fields ---
+recency = st.number_input("🕒 Recency (days since last purchase)", min_value=0, value=30)
+frequency = st.number_input("🔁 Frequency (number of purchases)", min_value=0, value=5)
+monetary = st.number_input("💰 Monetary (total spend)", min_value=0.0, value=200.0, step=10.0)
+
+# --- Predict button ---
+if st.button("📊 Predict Cluster"):
+    rfm_input = np.array([[recency, frequency, monetary]])
+    cluster = kmeans_model.predict(rfm_input)[0]
+
+    segment = segment_labels.get(cluster, f"Cluster {cluster}")
+    st.success(f"✅ This customer belongs to segment: **{segment}**")
