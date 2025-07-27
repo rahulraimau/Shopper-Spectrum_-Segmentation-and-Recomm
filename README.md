@@ -24,6 +24,8 @@ E-Commerce and Retail Analytics
 
 The core problem addressed is to leverage e-commerce transaction data to understand customer purchasing behaviors, segment customers effectively using RFM analysis, and build a robust product recommendation system. This approach aims to enhance customer experience and drive business growth through targeted marketing and personalized product suggestions.
 
+dataset:https:[//drive.google.com/file/d/1rzRwxm_CJxcRzfoo9Ix37A2JTlMummY-/view?usp=sharing]
+
 ## 📌 Real-time Business Use Cases
 
 * **Customer Segmentation for Targeted Marketing Campaigns:** Identify distinct customer groups for personalized marketing strategies.
