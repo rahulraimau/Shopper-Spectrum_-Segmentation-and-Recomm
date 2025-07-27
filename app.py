@@ -4,7 +4,7 @@ import joblib
 from sklearn.neighbors import NearestNeighbors
 import requests
 import io
-
+import pickle
 # --- Load data ---
 csv_url = "https://drive.google.com/uc?export=download&id=1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI"
 
