@@ -4,6 +4,7 @@
 ## Project Overview
 
 The global e-commerce industry generates vast amounts of transaction data daily, offering valuable insights into customer purchasing behaviors. Analyzing this data is essential for identifying meaningful customer segments and recommending relevant products to enhance customer experience and drive business growth. This project aims to examine transaction data from an online retail business to uncover patterns in customer purchase behavior, segment customers based on Recency, Frequency, and Monetary (RFM) analysis, and develop a product recommendation system using collaborative filtering techniques.
+project streamlit live demo:https://shopper-spectrum-segmentation-and-recomm-vjm2xqsxru5selsagyxwj.streamlit.app/
 
 ## 🚀 Skills Acquired
 
@@ -206,59 +207,7 @@ The core problem addressed is to leverage e-commerce transaction data to underst
     * Customer behavior input (Recency, Frequency, Monetary) → predicts cluster segment.
     * Clean, interactive UI with real-time outputs.
 
-## ⏳ Timeline
 
-The project should be completed and submitted within 8 days from the date it is assigned.
-
-## Created By
-
-* Nilofer Mubeen
-
-## Verified By
-
-* Shadiya
-
-## Approved By
-
-* Nehlath Harmain
-
-## References
-
-* [Streamlit recording (English)](link-to-recording-english)
-* [Special session for STREAMLIT (11/08/2024)](link-to-streamlit-session)
-* [Streamlit Reference doc](https://docs.streamlit.io/)
-* [Streamlit API reference](https://docs.streamlit.io/library/api-reference)
-* [Project Live Evaluation](link-to-project-live-evaluation)
-* [Capstone Explanation Guideline](link-to-capstone-explanation)
-* [GitHub Reference](link-to-github-ppt)
-* [Machine Learning (Eng) - Recommendation systems](link-to-ml-eng-recommendation)
-* [Project Excellence Series: Guided Learning & Problem Solving [Machine Learning USVL] (English)](link-to-project-excellence-eng)
-* [Machine Learning (Tam) - Recommendation systems](link-to-ml-tam-recommendation)
-* [Project Excellence Series: Guided Learning & Problem Solving [Machine Learning USVL] (TAMIL)](link-to-project-excellence-tam)
-* [Project Orientation - xit-tvjx-xth (2025-06-16 11:53 GMT+5:30)](link-to-project-orientation)
-
----
-
-### PROJECT DOUBT CLARIFICATION SESSION (PROJECT AND CLASS DOUBTS)
-
-**About Session:** The Project Doubt Clarification Session is a helpful resource for resolving questions and concerns about projects and class topics. It provides support in understanding project requirements, addressing code issues, and clarifying class concepts. The session aims to enhance comprehension and provide guidance to overcome challenges effectively.
-**Note:** Book the slot at least before 12:00 Pm on the same day
-
-**Timing:** Monday-Saturday (4:00PM to 5:00PM)
-
-**Booking link:** [https://forms.gle/XC553oSbMJ2Gcfug9](https://forms.gle/XC553oSbMJ2Gcfug9)
-
----
-
-### LIVE EVALUATION SESSION (CAPSTONE AND FINAL PROJECT)
-
-**About Session:** The Live Evaluation Session for Capstone and Final Projects allows participants to showcase their projects and receive real-time feedback for improvement. It assesses project quality and provides an opportunity for discussion and evaluation.
-
-**Note:** This form will Open only on Saturday (after 2 PM) and Sunday on Every Week
-
-**Timing:** Monday-Saturday (05:30PM to 07:00PM)
-
-**Booking link:** [https://forms.gle/1m2Gsro41fLtZurRA](https://forms.gle/1m2Gsro41fLtZurRA)
 📬 Contact
 Rahul Rai
 📧 rahulraimau5@gmail.com
