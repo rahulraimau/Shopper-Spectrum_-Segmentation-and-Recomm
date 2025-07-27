@@ -4,21 +4,22 @@ import joblib
 from sklearn.neighbors import NearestNeighbors
 
 # --- Load data ---
-df = pd.read_csv("online_retail.csv", encoding='ISO-8859-1')
+csv_url = "https://drive.google.com/uc?export=download&id=1cRK_vRV2p3V6UAKLps04pgS4duXZ79lF"
+df = pd.read_csv(csv_url, encoding='ISO-8859-1')
 df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
+
 
 # --- Clean data ---
 df["Description"] = df["Description"].astype(str).str.strip().str.upper()
 df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
-# --- Create product matrix for recommender ---
-product_matrix = df.pivot_table(
-    index="CustomerID",
-    columns="Description",
-    values="Quantity",
-    aggfunc="sum"
-).fillna(0)
+matrix_url = "https://drive.google.com/uc?export=download&id=1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"
+matrix_file = "product_matrix.pkl"
+with open(matrix_file, "wb") as f:
+    f.write(requests.get(matrix_url).content)
+with open(matrix_file, "rb") as f:
+    product_matrix = pickle.load(f)
 
 # --- RFM Table for Customer Segmentation ---
 snapshot_date = df["InvoiceDate"].max() + pd.Timedelta(days=1)
