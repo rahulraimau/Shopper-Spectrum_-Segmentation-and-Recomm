@@ -5,7 +5,7 @@ from sklearn.neighbors import NearestNeighbors
 
 # --- Load data ---
 csv_url = "https://drive.google.com/file/d/1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI/view?usp=drive_link"
-df = pd.read_csv(csv_url, encoding='ISO-8859-1')
+df = pd.read_csv("online_retail.csv", encoding="ISO-8859-1", sep=",", on_bad_lines='skip')
 df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
 
 
