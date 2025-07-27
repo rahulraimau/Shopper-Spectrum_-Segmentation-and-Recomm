@@ -4,8 +4,13 @@ import joblib
 from sklearn.neighbors import NearestNeighbors
 
 # --- Load data ---
-csv_url = "https://drive.google.com/file/d/1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI/view?usp=drive_link"
-df = pd.read_csv("csv_url", encoding="ISO-8859-1", sep=",", on_bad_lines='skip')
+csv_url = "https://drive.google.com/uc?export=download&id=1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI"
+
+# Download and read into DataFrame
+response = requests.get(csv_url)
+response.raise_for_status()  # raises error if file is missing
+
+df = pd.read_csv(io.StringIO(response.text), encoding="ISO-8859-1", sep=",", on_bad_lines="skip")
 df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
 
 
