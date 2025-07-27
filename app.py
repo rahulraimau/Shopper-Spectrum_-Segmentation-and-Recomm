@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import joblib
 from sklearn.neighbors import NearestNeighbors
+import requests
+import io
 
 # --- Load data ---
 csv_url = "https://drive.google.com/uc?export=download&id=1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI"
