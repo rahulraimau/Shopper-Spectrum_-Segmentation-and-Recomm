@@ -27,17 +27,15 @@ df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
 # --- Download product_matrix.pkl from Google Drive ---
-file_id = "https://drive.google.com/uc?id=1i9Q3LqmAjTjOvUBpp66Y3rsXpXo392KX"
+file_id = "1i9Q3LqmAjTjOvUBpp66Y3rsXpXo392KX"
 output_file = "product_matrix.pkl"
 
+# Download only if not already present
 if not os.path.exists(output_file):
-    st.info("📦 Downloading product_matrix.pkl from Google Drive...")
-    try:
-        gdown.download(f"https://drive.google.com/uc?id={file_id}", output_file, quiet=False)
-        st.success("✅ product_matrix.pkl downloaded.")
-    except Exception as e:
-        st.error(f"❌ Failed to download product_matrix.pkl: {e}")
-        st.stop()
+    gdown.download(f"https://drive.google.com/uc?id={file_id}", output_file, quiet=False)
+
+# Load the file
+product_matrix = joblib.load(output_file)
 
 # --- Load Product Matrix Safely ---
 try:
