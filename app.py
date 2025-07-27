@@ -28,17 +28,20 @@ df["Description"] = df["Description"].astype(str).str.strip().str.upper()
 df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
-# --- Download product_matrix.pkl from Google Drive ---
-product_matrix_path = "product_matrix.pkl"
-product_matrix_id = "1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"  # your file ID from Drive
+import gdown
+import joblib
+import os
 
-if not os.path.exists(product_matrix_path):
-    st.info("📦 Downloading product matrix...")
-    gdown.download(f"https://drive.google.com/uc?id={product_matrix_id}", product_matrix_path, quiet=False)
+# Google Drive file ID
+file_id = "1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"
+output_file = "product_matrix.pkl"
 
-# --- Load product_matrix ---
-product_matrix = joblib.load(product_matrix_path)
+# Only download if not already present
+if not os.path.exists(output_file):
+    gdown.download(f"https://drive.google.com/uc?id={file_id}", output_file, quiet=False)
 
+# Now safely load
+product_matrix = joblib.load(output_file)
 # --- RFM Table for Customer Segmentation ---
 snapshot_date = df["InvoiceDate"].max() + pd.Timedelta(days=1)
 rfm_df = df.groupby("CustomerID").agg({
