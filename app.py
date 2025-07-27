@@ -4,44 +4,48 @@ import joblib
 from sklearn.neighbors import NearestNeighbors
 import requests
 import io
-import pickle
-import streamlit as st
-import pandas as pd
-import joblib
 import gdown
 import os
 
-
-# --- Load data ---
+# --- Load CSV from Google Drive ---
+st.info("📥 Loading retail data from Google Drive...")
 csv_url = "https://drive.google.com/uc?export=download&id=1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI"
 
-# Download and read into DataFrame
-response = requests.get(csv_url)
-response.raise_for_status()  # raises error if file is missing
-
-df = pd.read_csv(io.StringIO(response.text), encoding="ISO-8859-1", sep=",", on_bad_lines="skip")
-df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
-
+try:
+    response = requests.get(csv_url)
+    response.raise_for_status()
+    df = pd.read_csv(io.StringIO(response.text), encoding="ISO-8859-1", on_bad_lines='skip')
+    st.success("✅ Retail data loaded.")
+except Exception as e:
+    st.error(f"❌ Error loading retail data: {e}")
+    st.stop()
 
 # --- Clean data ---
+df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
 df["Description"] = df["Description"].astype(str).str.strip().str.upper()
 df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
-import gdown
-import joblib
-import os
-
-# Google Drive file ID
+# --- Download product_matrix.pkl from Google Drive ---
 file_id = "1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"
 output_file = "product_matrix.pkl"
 
-# Only download if not already present
 if not os.path.exists(output_file):
-    gdown.download(f"https://drive.google.com/uc?id={file_id}", output_file, quiet=False)
+    st.info("📦 Downloading product_matrix.pkl from Google Drive...")
+    try:
+        gdown.download(f"https://drive.google.com/uc?id={file_id}", output_file, quiet=False)
+        st.success("✅ product_matrix.pkl downloaded.")
+    except Exception as e:
+        st.error(f"❌ Failed to download product_matrix.pkl: {e}")
+        st.stop()
 
-# Now safely load
-product_matrix = joblib.load(output_file)
+# --- Load Product Matrix Safely ---
+try:
+    product_matrix = joblib.load(output_file)
+    st.success("✅ Product matrix loaded.")
+except Exception as e:
+    st.error(f"❌ Error loading product_matrix.pkl: {e}")
+    st.stop()
 # --- RFM Table for Customer Segmentation ---
 snapshot_date = df["InvoiceDate"].max() + pd.Timedelta(days=1)
 rfm_df = df.groupby("CustomerID").agg({
