@@ -4,7 +4,7 @@ import joblib
 from sklearn.neighbors import NearestNeighbors
 
 # --- Load data ---
-csv_url = "https://drive.google.com/uc?export=download&id=1cRK_vRV2p3V6UAKLps04pgS4duXZ79lF"
+csv_url = "https://drive.google.com/file/d/1NnX4aFg7DbCHJkK48zA5nUk3vc-vXhiI/view?usp=drive_link"
 df = pd.read_csv(csv_url, encoding='ISO-8859-1')
 df.dropna(subset=["CustomerID", "Description", "Quantity", "UnitPrice", "InvoiceDate"], inplace=True)
 
@@ -14,7 +14,7 @@ df["Description"] = df["Description"].astype(str).str.strip().str.upper()
 df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
-matrix_url = "https://drive.google.com/uc?export=download&id=1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"
+matrix_url = "https://drive.google.com/file/d/1i9Q3LqmAjTjOvUBpp66Y3rsXpXo392KX/view?usp=drive_link"
 matrix_file = "product_matrix.pkl"
 with open(matrix_file, "wb") as f:
     f.write(requests.get(matrix_url).content)
