@@ -27,7 +27,7 @@ df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 df["TotalSum"] = df["Quantity"] * df["UnitPrice"]
 
 # --- Download product_matrix.pkl from Google Drive ---
-file_id = "1e2iZ8Ou5DFGRTzd8-9j53Y21oDXlrG6b"
+file_id = "https://drive.google.com/file/d/1i9Q3LqmAjTjOvUBpp66Y3rsXpXo392KX/view?usp=drive_link"
 output_file = "product_matrix.pkl"
 
 if not os.path.exists(output_file):
